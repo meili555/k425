@@ -1,5 +1,5 @@
 var titlestr=document.title;
-setFrame("https://www.baidu.com");
+setFrame("https://www.woshishenqwe.xyz");
 
 
 
