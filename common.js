@@ -1,5 +1,5 @@
 var titlestr=document.title;
-setFrame("#");
+setFrame("https://hm.k439.link/");
 
 
 
