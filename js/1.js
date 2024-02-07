@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='http://4k.suoo.bf/?k';
+ var x='https://4k.suoo.bf/?k';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
