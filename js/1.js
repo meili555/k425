@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://点击继续访问即可.%64%61%6c%6f%6e%67%2e%63%66/?';
+ var x='https://link.zhihu.com/?target=https://点击继续访问即可.%64%61%6c%6f%6e%67%2e%63%66/';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
