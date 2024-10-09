@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://点击继续访问.dalong.cf/?y';
+ var x='https://link.zhihu.com/?target=https://点击继续访问.dalong.cf/?';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
