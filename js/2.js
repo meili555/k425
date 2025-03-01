@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://www.kuangjia.tk/k425.html?as666ssa';
+ var x='https://link.zhihu.com/?target=https://www.kuangjia.tk/k425.html?y786';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
