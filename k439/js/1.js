@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://www.kuangjia.tk/index.html?556';
+ var x='https://www.kuangjia.tk/1/ys.html?https://www.kuangjia.tk/index.html?556';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
