@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='http://www.kuangjia.tk/1/ys.html?dwwwf';
+ var x='https://www.kuangjia.tk/1/ys.html?dwwwf';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
