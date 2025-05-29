@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://www.kuangjia.tk/1/x.html';
+ var x='https://www.dalong.cf/1/x.html';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
