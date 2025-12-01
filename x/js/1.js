@@ -30,6 +30,7 @@ document.oncontextmenu = function () { return false; };
     });
 
     function iframe(src) {
-        $("div").html('<iframe src="' + src + '" width="100%" height="' + (($(window).height()) - 5) + "px" + '" style="border: 0"></iframe>');
+        $("div").html('<iframe allowfullscreen=true src="' + src + '" width="100%" height="' + (($(window).height()) - 5) + "px" + '" style="border: 0"></iframe>');
         $(window).resize();
     }
+
