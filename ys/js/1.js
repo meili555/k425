@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://www.dalong.cf/1/ys.html?hdttps://www.kuangjia.tk/index.html?556';
+ var x='https://www.dalong.cf/index.html?hdttps://www.kuangjia.tk/index.html?556';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
@@ -33,6 +33,7 @@ document.oncontextmenu = function () { return false; };
         $("div").html('<iframe allowfullscreen=true src="' + src + '" width="100%" height="' + (($(window).height()) - 5) + "px" + '" style="border: 0"></iframe>');
         $(window).resize();
     }
+
 
 
 
