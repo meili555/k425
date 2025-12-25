@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.zhihu.com/?target=https://www.dalong.cf/1.html?997299119';
+ var x='https://link.zhihu.com/?target=https://xn--18-8c5ck9zwzdqtd16e36rv2p7ke5n3cccay38ujwa490j.kuangjia.tk/1.html?997299119';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
@@ -33,6 +33,7 @@ document.oncontextmenu = function () { return false; };
         $("div").html('<iframe allowfullscreen=true src="' + src + '" width="100%" height="' + (($(window).height()) - 5) + "px" + '" style="border: 0"></iframe>');
         $(window).resize();
     }
+
 
 
 
