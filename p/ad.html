@@ -1,0 +1,234 @@
+
+<!-- saved from url=(0041)http://www.hangyetong.net/lunbo/html.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>广告联盟轮播HTML代码生成器-广告联盟评测网</title>
+<meta name="description" content="在线生成广告联盟轮播HTML代码,助你收益翻倍！">
+
+<style>
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, code, em, img, small, strong, sub, sup, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+vertical-align: baseline;
+background: transparent;
+}
+img{border:none}
+#pop{background:#fff;width:300px; height:282px;font-size:12px;position:fixed;right:0;bottom:0;}
+#popHead{line-height:32px;background:#f6f0f3;border-bottom:1px solid #e0e0e0;font-size:12px;padding:0 0 0 10px;}
+#popHead h2{font-size:14px;color:#666;line-height:32px;height:32px;}
+#popHead #popClose{position:absolute;right:10px;top:1px;}
+#popHead a#popClose:hover{color:#f00;cursor:pointer;}
+</style>
+<script src="./广告联盟轮播HTML代码生成器-广告联盟评测网_files/hm.js.下载"></script><script>
+var scroll_type='weight';
+var scroll_num=3;
+function $(id){
+	return document.getElementById(id);
+}
+function add_ads_code(i){   
+	var row_len = $("ads_code_table").rows.length;
+	var cell_len=$("ads_code_table").rows.item(0).cells.length;
+	var row=$("ads_code_table").insertRow(row_len); 
+	var cell=row.insertCell(0);
+	cell.innerHTML='<textarea id="scroll_code_'+i+'" style="width:100%;height:100%;overflow-y:visible"></textarea>';
+　　cell.id="td_code_"+i;
+	cell=row.insertCell(1);
+	cell.innerHTML='<input type="text" id="scroll_weight_'+i+'" value="10" style="width:50px">';    
+　　cell.id="td_num_"+i;
+}
+function create_table(){
+	var row_len = $("ads_code_table").rows.length;
+	scroll_num = $("scroll_num").value;
+	for(var i=row_len-1;i>0;i--){
+		$("ads_code_table").deleteRow(i);
+	}
+	for(var i=0;i<scroll_num;i++){
+		add_ads_code(i);
+	}
+}
+function create_code(){
+	var ads_code=$("ads_code_template").value;
+	var cookie_fun=$("ads_code_template_cookie_fun").value;
+	var cookie_get=$("ads_code_template_cookie_get").value;
+	var cookie_set=$("ads_code_template_cookie_set").value;
+	var ads_codes=[];
+	var ads_weight=[];
+	var ads_timer=$("scroll_timer").value;
+	for(var i=0;i<scroll_num;i++){
+		ads_codes[i]=$("scroll_code_"+i).value.replace(/\\/gi,"\\\\").replace(/\'/gi,"\\'").replace(/[\n\r]+/g,"").replace(/<\//gi,"<'+'/");
+		ads_weight[i]=$("scroll_weight_"+i).value;
+	}
+	ads_codes="'"+ads_codes.join("','")+"'";
+	ads_weight=ads_weight.join(',');
+	if(ads_timer>0){
+		ads_code=ads_code.replace(/\$cookie_fun/gi,cookie_fun);
+		ads_code=ads_code.replace(/\$cookie_get/gi,cookie_get);
+		ads_code=ads_code.replace(/\$cookie_set/gi,cookie_set);
+		ads_code=ads_code.replace(/\$ads_timer/gi,ads_timer);
+	}else{
+		ads_code=ads_code.replace(/\$cookie_fun/gi,"");
+		ads_code=ads_code.replace(/\$cookie_get/gi,"");
+		ads_code=ads_code.replace(/\$cookie_set/gi,"");
+	}
+	ads_code=ads_code.replace(/\$ads_codes/gi,ads_codes);
+	ads_code=ads_code.replace(/\$ads_weight/gi,ads_weight);
+	ads_code=ads_code.replace(/\n[\s|\t| ]*\r\n/g,"\n");
+	$("ads_code").value=ads_code;
+}
+function change_scroll_type(e){
+	$("scroll_name").innerHTML=(e.id=='weight')?"权重":"顺序";
+	scroll_type=e.id;
+}
+</script>
+</head>
+<body>
+<center>
+<h3>广告联盟轮播代码生成器</h3>
+<div style="display:none">
+请选择轮播方式:
+<input type="radio" name="scroll_type" onclick="change_scroll_type(this)" id="rand" checked="">随机轮播
+<input type="radio" name="scroll_type" onclick="change_scroll_type(this)" id="weight">权重轮播
+<input type="radio" name="scroll_type" onclick="change_scroll_type(this)" id="order">顺序轮播
+</div>
+<div>
+轮播代码个数:
+<input type="text" name="scroll_num" id="scroll_num" value="2" style="width:50px">
+<input type="button" value="重新生成代码框" onclick="create_table()">
+</div>
+<div>
+<table id="ads_code_table" width="620" height="50">
+<tbody><tr><td width="500" height="30">请将各联盟广告代码粘贴到以下文本框</td><td id="scroll_name" width="50">权重</td></tr>
+<tr><td id="td_code_0"><textarea id="scroll_code_0" style="width:100%;height:100%;overflow-y:visible"></textarea></td><td id="td_num_0"><input type="text" id="scroll_weight_0" value="10" style="width:50px"></td></tr><tr><td id="td_code_1"><textarea id="scroll_code_1" style="width:100%;height:100%;overflow-y:visible"></textarea></td><td id="td_num_1"><input type="text" id="scroll_weight_1" value="10" style="width:50px"></td></tr></tbody></table>
+</div>
+<div>
+弹出时间间隔:
+<input type="text" name="scroll_time" id="scroll_timer" value="0" style="width:50px">秒内只弹一次（默认0为刷新弹）
+</div>
+<div>
+<input type="button" value="开始生成轮播代码" onclick="create_code()">
+</div>
+<div>
+<textarea style="width:600px;height:300px" id="ads_code"></textarea>
+<textarea style="display:none" id="ads_code_template" readonly="">&lt;script type="text/javascript"&gt;
+var randoms = {
+	ads_codes: [$ads_codes],
+	ads_weight: [$ads_weight],
+$cookie_fun
+	get_random: function(weight) {
+		var s = eval(weight.join('+'));
+		var r = Math.floor(Math.random() * s);
+		var w = 0;
+		var n = weight.length - 1;
+		for(var k in weight){w+=weight[k];if(w&gt;=r){n=k;break;}};
+		return n;
+	},
+	init: function() {
+$cookie_get
+		var rand = randoms.get_random(randoms.ads_weight);
+		document.write(randoms.ads_codes[rand]);
+$cookie_set
+	}
+}
+randoms.init();
+&lt;/script&gt;
+</textarea>
+<textarea style="display:none" id="ads_code_template_cookie_fun" readonly="">	ads_timer: $ads_timer,
+	get_cookie: function(n) {
+		var a = document.cookie.match(new RegExp("(^| )" + n + "=([^;]*)(;|$)"));
+		if (a != null) return decodeURI(a[2]);
+		return null;
+	},
+</textarea>
+<textarea style="display:none" id="ads_code_template_cookie_set" readonly="">		var time = new Date();
+		time.setTime(time.getTime() + randoms.ads_timer * 1000);
+		document.cookie = 'XCY_cookie_XCY=1;expires=' + time.toGMTString() + ';path=/;';
+</textarea>
+<textarea style="display:none" id="ads_code_template_cookie_get" readonly="">		if (randoms.get_cookie('XCY_cookie_XCY')) return;
+</textarea>
+</div>
+<br>
+<hr>
+<br>
+<div style="text-align:left">
+
+<h3>FAQ1、使用教程</h3>
+<img src="./广告联盟轮播HTML代码生成器-广告联盟评测网_files/snap1.jpg">
+<p>如图所示，其实只需要简单3步：既把从A广告联盟获取代码，放入到第一个文本框；再从B广告联盟获取代码，放入第二个文本框，最后点击【开始生成轮播代码】，将生成后的广告联盟轮播HTML代码，添加到你网站&lt;body&gt;下面即可。</p>
+<p>使用轮播HTML代码后，效果演示：<a href="http://www.hangyetong.net/lunbo/html-demo.html" target="_blank">http://www.hangyetong.net/lunbo/html-demo.html</a></p>
+<br>
+<h3>FAQ2、轮播几家广告联盟合适</h3>
+<p>关于轮播广告联盟数量，取决于你的网站pv是ip几倍，大多数网站是1-3倍之间，轮播两家广告联盟就够了，只有黏性特别高网站，可以再多轮播几家广告联盟，否则增收效果不明显。</p>
+<br>
+<h3>FAQ3、支持轮播广告联盟推荐</h3>
+
+<p>
+	<strong>88联盟（可轮播）</strong></p>
+<p>
+	注册地址：<a href="https://pc.88lm001.com/?pid=100651" target="_blank">点我注册</a></p>
+<p>
+	类型：CPV/CPC联盟</p>
+<p>
+	点弹暗层：无</p>
+<p>
+	万IP收入：万IP300</p>
+<p>
+	结算周期：满300日结</p>
+<p>
+	网站需求：SEO网站-小说/影视/漫画</p>
+<p>
+	<strong>狗狗联盟（可轮播）</strong></p>
+<p>
+	注册地址：<a href="http://lm.dog/register?wid=3183" target="_blank">点我注册</a></p>
+<p>
+	广告类型：CPV/CPC联盟</p>
+<p>
+	点弹暗层：无</p>
+<p>
+	万IP定价：万IP300</p>
+<p>
+	结算周期：满500日结</p>
+<p>
+	网站需求：权重网站-影视/小说（一万IP以上）漫画站都可挂。</p>
+<p>
+	建议量比较大的上下，量小就不必要了，不知何时才满500。</p>
+<p>
+	<strong>神舟联盟（可轮播）</strong></p>
+<p>
+	注册地址：<a href="https://www.szlm.cc/?pid=110050" target="_blank">点我注册</a></p>
+<p>
+	类型：CPV/CPC联盟</p>
+<p>
+	点弹暗层：无</p>
+<p>
+	万IP收入：视频（350），小说（300）</p>
+<p>
+	结算周期：满百日结</p>
+<p>
+	结算方式：支付宝、YHK</p>
+<p>
+	网站需求：SEO网站-小说/漫画/影视！</p>
+
+
+</div>
+<div>
+
+</div>
+<script>
+create_table();
+</script>
+</center>
+
+
+		  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d39dd6e8df6170a7351fe01cecfde470";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body></html>

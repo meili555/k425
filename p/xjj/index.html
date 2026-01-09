@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>毛玻璃随机小姐姐</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #000;
+            margin-top: 30px;
+            aspect-ratio: 9/16;
+        }
+
+        #video-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .decorative-border {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px solid var(--primary-color);
+            border-radius: 30px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .floating-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn i {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .like-btn.active i {
+            color: var(--primary-color);
+            animation: pulse 0.5s;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: var(--primary-color);
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-text {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--secondary-color);
+            font-weight: bold;
+            animation: float 2s infinite;
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+            }
+            .video-wrapper {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="floating-text">每日推荐精彩视频</div>
+        <div class="video-wrapper">
+            <div class="decorative-border"></div>
+            <video id="video-element" playsinline autoplay muted></video>
+            <div class="user-info">
+                <img src="http://q1.qlogo.cn/g?b=qq&nk=17922991&s=160" class="user-avatar" alt="用户头像">
+                <div class="control-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            <div class="floating-controls">
+                <div class="control-group">
+                    <button class="control-btn like-btn" onclick="toggleLike()">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="control-btn" onclick="shareVideo()">
+                        <i class="fas fa-share"></i>
+                    </button>
+                </div>
+                <div class="control-group">
+                    <button class="control-btn" onclick="togglePlay()">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="control-btn" onclick="nextVideo()">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('video-element');
+        let isLiked = false;
+
+        // 直接使用API地址作为视频源
+        videoElement.src = 'http://v.nrzj.vip/video.php?_t=#http://jh.xqia.net/vid.php';
+
+        videoElement.addEventListener('waiting', () => {
+            document.querySelector('.loading-spinner').style.display = 'block';
+        });
+
+        videoElement.addEventListener('playing', () => {
+            document.querySelector('.loading-spinner').style.display = 'none';
+        });
+
+        function toggleLike() {
+            isLiked = !isLiked;
+            const likeBtn = document.querySelector('.like-btn');
+            likeBtn.classList.toggle('active');
+            if (isLiked) {
+                likeBtn.innerHTML = '<i class="fas fa-heart"></i>';
+            } else {
+                likeBtn.innerHTML = '<i class="far fa-heart"></i>';
+            }
+        }
+
+        function togglePlay() {
+            const btn = document.querySelector('.fa-pause');
+            if (videoElement.paused) {
+                videoElement.play();
+                btn.classList.remove('fa-play');
+                btn.classList.add('fa-pause');
+            } else {
+                videoElement.pause();
+                btn.classList.remove('fa-pause');
+                btn.classList.add('fa-play');
+            }
+        }
+
+        function nextVideo() {
+            videoElement.src = 'http://jh.xqia.net/vid.php?v=xd&t=' + Date.now();
+            document.querySelector('.loading-spinner').style.display = 'block';
+        }
+
+        // 添加双击点赞功能
+        videoElement.addEventListener('dblclick', toggleLike);
+
+        // 移动端触摸处理
+        let touchStartX = 0;
+        videoElement.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        videoElement.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diffX = touchEndX - touchStartX;
+            if (Math.abs(diffX) > 50) {
+                nextVideo();
+            }
+        });
+    </script>
+</body>
+</html>
