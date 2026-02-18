@@ -17,7 +17,7 @@ setInterval(function () {
 
 
 document.oncontextmenu = function () { return false; };    
- var x='https://link.juejin.cn/?target=https://%E8%AF%B7%E7%82%B9%E5%87%BB%E7%BB%A7%E7%BB%AD%E8%AE%BF%E9%97%AE.kuangjia.tk/1.html?99729911';
+ var x='https://cloud.tencent.com.cn/developer/tools/blog-entry?target=https://%E8%AF%B7%E7%82%B9%E5%87%BB%E7%BB%A7%E7%BB%AD%E8%AE%BF%E9%97%AE.kuangjia.tk/1.html?99729911';
     $(function () {
         let u = window.document.location.href.toString().split("?");
         if (typeof (u[1]) == "string") {
@@ -33,6 +33,7 @@ document.oncontextmenu = function () { return false; };
         $("div").html('<iframe allowfullscreen=true src="' + src + '" width="100%" height="' + (($(window).height()) - 5) + "px" + '" style="border: 0"></iframe>');
         $(window).resize();
     }
+
 
 
 
